@@ -1,0 +1,77 @@
+[
+  {
+    "application_id": 1,
+    "server_id": 1,
+    "role": "Primary API Gateway"
+  },
+  {
+    "application_id": 1,
+    "server_id": 2,
+    "role": "Secondary API Gateway"
+  },
+  {
+    "application_id": 1,
+    "server_id": 3,
+    "role": "Transactional Database"
+  },
+  {
+    "application_id": 2,
+    "server_id": 4,
+    "role": "Web Load Balancer (Front)"
+  },
+  {
+    "application_id": 2,
+    "server_id": 5,
+    "role": "Web Load Balancer (Front)"
+  },
+  {
+    "application_id": 2,
+    "server_id": 6,
+    "role": "Application Server"
+  },
+  {
+    "application_id": 2,
+    "server_id": 7,
+    "role": "Session Cache"
+  },
+  {
+    "application_id": 3,
+    "server_id": 8,
+    "role": "Payment Settlement Core"
+  },
+  {
+    "application_id": 3,
+    "server_id": 9,
+    "role": "Hardware Security Module"
+  },
+  {
+    "application_id": 4,
+    "server_id": 10,
+    "role": "Spark Analytics Master"
+  },
+  {
+    "application_id": 4,
+    "server_id": 11,
+    "role": "Spark Worker Node"
+  },
+  {
+    "application_id": 5,
+    "server_id": 12,
+    "role": "Corporate HR Portal Host"
+  },
+  {
+    "application_id": 6,
+    "server_id": 13,
+    "role": "CI/CD Master Build Host"
+  },
+  {
+    "application_id": 7,
+    "server_id": 14,
+    "role": "Staging Application Server"
+  },
+  {
+    "application_id": 8,
+    "server_id": 15,
+    "role": "DR Standby Node"
+  }
+]

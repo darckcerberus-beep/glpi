@@ -1,0 +1,16 @@
+id,hostname,ip,os,os_version,environment,datacenter,rack,cpu_cores,ram_gb,status,primary_role
+1,srv-bank-api-01.prod.internal,10.10.10.11,Ubuntu Linux,22.04 LTS,production,DC-Frankfurt-01,RACK-A04,16,64,In Service,Primary API Gateway
+2,srv-bank-api-02.prod.internal,10.10.10.12,Ubuntu Linux,22.04 LTS,production,DC-Frankfurt-01,RACK-A05,16,64,In Service,Secondary API Gateway
+3,srv-bank-db-01.prod.internal,10.10.10.21,Red Hat Enterprise Linux,9.2,production,DC-Frankfurt-01,RACK-B01,32,256,In Service,Primary Relational DB
+4,srv-ecom-web-01.prod.internal,10.20.10.11,Debian GNU/Linux,12.1,production,DC-Amsterdam-02,RACK-W01,8,32,In Service,Web Reverse Proxy / Load Balancer
+5,srv-ecom-web-02.prod.internal,10.20.10.12,Debian GNU/Linux,12.1,production,DC-Amsterdam-02,RACK-W02,8,32,In Service,Web Reverse Proxy / Load Balancer
+6,srv-ecom-app-01.prod.internal,10.20.10.21,Ubuntu Linux,20.04 LTS,production,DC-Amsterdam-02,RACK-W03,16,64,In Service,E-Commerce Application Server
+7,srv-ecom-cache-01.prod.internal,10.20.10.31,Debian GNU/Linux,12.1,production,DC-Amsterdam-02,RACK-W04,8,32,In Service,Redis Cache & Session Store
+8,srv-pay-proc-01.pci.internal,10.30.10.10,Red Hat Enterprise Linux,8.8,production,DC-Dublin-PCI,RACK-PCI-01,16,64,In Service,Transaction Processing Engine
+9,srv-pay-hsm-01.pci.internal,10.30.10.20,Hardened Linux,Enterprise 5.4,production,DC-Dublin-PCI,RACK-PCI-02,8,16,In Service,Hardware Security Module (HSM) Proxy
+10,srv-data-spark-01.prod.internal,10.50.10.31,Ubuntu Linux,22.04 LTS,production,DC-Frankfurt-01,RACK-D01,32,128,In Service,Spark Master Node
+11,srv-data-worker-01.prod.internal,10.50.10.32,Ubuntu Linux,22.04 LTS,production,DC-Frankfurt-01,RACK-D02,32,128,In Service,Spark Analytics Worker
+12,srv-hr-app-01.corp.internal,10.40.10.15,Ubuntu Linux,22.04 LTS,production,DC-Frankfurt-01,RACK-C03,8,32,In Service,HR Self-Service Host
+13,srv-ops-ci-01.corp.internal,10.60.10.50,Ubuntu Linux,22.04 LTS,production,DC-Frankfurt-01,RACK-O01,24,96,In Service,Jenkins CI Master & Build Engine
+14,srv-sup-stage-01.stg.internal,10.70.10.88,Debian GNU/Linux,11.7,staging,DC-Frankfurt-01,RACK-T01,4,16,In Service,Staging Support Application
+15,srv-dr-core-01.dr.internal,10.80.10.101,Red Hat Enterprise Linux,9.2,dr,DC-Paris-DR,RACK-DR-01,32,256,In Service,Disaster Recovery Warm Standby

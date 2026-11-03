@@ -1,0 +1,16 @@
+application_id,server_id,role
+1,1,Primary API Gateway
+1,2,Secondary API Gateway
+1,3,Transactional Database
+2,4,Web Load Balancer (Front)
+2,5,Web Load Balancer (Front)
+2,6,Application Server
+2,7,Session Cache
+3,8,Payment Settlement Core
+3,9,Hardware Security Module
+4,10,Spark Analytics Master
+4,11,Spark Worker Node
+5,12,Corporate HR Portal Host
+6,13,CI/CD Master Build Host
+7,14,Staging Application Server
+8,15,DR Standby Node

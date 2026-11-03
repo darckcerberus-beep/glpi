@@ -1,0 +1,192 @@
+[
+  {
+    "software_id": 1,
+    "name": "Apache Tomcat",
+    "category": "Application Server / Servlet Container",
+    "vendor": "Apache Software Foundation",
+    "version_id": 1,
+    "version": "9.0.58",
+    "is_vulnerable": true,
+    "cve_ref": "CVE-2022-22965"
+  },
+  {
+    "software_id": 1,
+    "name": "Apache Tomcat",
+    "category": "Application Server / Servlet Container",
+    "vendor": "Apache Software Foundation",
+    "version_id": 2,
+    "version": "10.1.18",
+    "is_vulnerable": false,
+    "cve_ref": ""
+  },
+  {
+    "software_id": 2,
+    "name": "Spring Framework",
+    "category": "Java Application Framework",
+    "vendor": "VMware / Spring",
+    "version_id": 3,
+    "version": "5.3.18",
+    "is_vulnerable": true,
+    "cve_ref": "CVE-2022-22965"
+  },
+  {
+    "software_id": 2,
+    "name": "Spring Framework",
+    "category": "Java Application Framework",
+    "vendor": "VMware / Spring",
+    "version_id": 4,
+    "version": "6.0.14",
+    "is_vulnerable": false,
+    "cve_ref": ""
+  },
+  {
+    "software_id": 3,
+    "name": "Apache Log4j",
+    "category": "Java Logging Framework",
+    "vendor": "Apache Software Foundation",
+    "version_id": 5,
+    "version": "2.14.1",
+    "is_vulnerable": true,
+    "cve_ref": "CVE-2021-44228"
+  },
+  {
+    "software_id": 3,
+    "name": "Apache Log4j",
+    "category": "Java Logging Framework",
+    "vendor": "Apache Software Foundation",
+    "version_id": 6,
+    "version": "2.17.1",
+    "is_vulnerable": false,
+    "cve_ref": ""
+  },
+  {
+    "software_id": 4,
+    "name": "Nginx",
+    "category": "Web Server / Reverse Proxy",
+    "vendor": "F5 / Nginx",
+    "version_id": 7,
+    "version": "1.20.1",
+    "is_vulnerable": true,
+    "cve_ref": "CVE-2023-44487"
+  },
+  {
+    "software_id": 4,
+    "name": "Nginx",
+    "category": "Web Server / Reverse Proxy",
+    "vendor": "F5 / Nginx",
+    "version_id": 8,
+    "version": "1.24.0",
+    "is_vulnerable": false,
+    "cve_ref": ""
+  },
+  {
+    "software_id": 5,
+    "name": "OpenSSH",
+    "category": "Remote Access / Secure Shell",
+    "vendor": "OpenBSD Foundation",
+    "version_id": 9,
+    "version": "8.9p1",
+    "is_vulnerable": true,
+    "cve_ref": "CVE-2024-6387"
+  },
+  {
+    "software_id": 5,
+    "name": "OpenSSH",
+    "category": "Remote Access / Secure Shell",
+    "vendor": "OpenBSD Foundation",
+    "version_id": 10,
+    "version": "9.8p1",
+    "is_vulnerable": false,
+    "cve_ref": ""
+  },
+  {
+    "software_id": 6,
+    "name": "OpenSSL",
+    "category": "Cryptographic Library",
+    "vendor": "OpenSSL Project",
+    "version_id": 11,
+    "version": "1.1.1k",
+    "is_vulnerable": true,
+    "cve_ref": "CVE-2022-3602"
+  },
+  {
+    "software_id": 6,
+    "name": "OpenSSL",
+    "category": "Cryptographic Library",
+    "vendor": "OpenSSL Project",
+    "version_id": 12,
+    "version": "3.0.12",
+    "is_vulnerable": false,
+    "cve_ref": ""
+  },
+  {
+    "software_id": 7,
+    "name": "PostgreSQL",
+    "category": "Relational Database Management System",
+    "vendor": "PostgreSQL Global Development Group",
+    "version_id": 13,
+    "version": "14.8",
+    "is_vulnerable": false,
+    "cve_ref": ""
+  },
+  {
+    "software_id": 8,
+    "name": "Redis",
+    "category": "In-Memory Data Store & Cache",
+    "vendor": "Redis Ltd",
+    "version_id": 14,
+    "version": "6.2.5",
+    "is_vulnerable": false,
+    "cve_ref": ""
+  },
+  {
+    "software_id": 9,
+    "name": "RabbitMQ",
+    "category": "Message Broker",
+    "vendor": "VMware",
+    "version_id": 15,
+    "version": "3.9.15",
+    "is_vulnerable": false,
+    "cve_ref": ""
+  },
+  {
+    "software_id": 10,
+    "name": "Apache Spark",
+    "category": "Distributed Computing Framework",
+    "vendor": "Apache Software Foundation",
+    "version_id": 16,
+    "version": "3.2.0",
+    "is_vulnerable": true,
+    "cve_ref": "CVE-2022-33891"
+  },
+  {
+    "software_id": 11,
+    "name": "Apache HTTP Server",
+    "category": "Web Server",
+    "vendor": "Apache Software Foundation",
+    "version_id": 17,
+    "version": "2.4.49",
+    "is_vulnerable": true,
+    "cve_ref": "CVE-2021-41773"
+  },
+  {
+    "software_id": 12,
+    "name": "Jenkins",
+    "category": "Continuous Integration Automation Server",
+    "vendor": "Jenkins Project",
+    "version_id": 18,
+    "version": "2.441",
+    "is_vulnerable": true,
+    "cve_ref": "CVE-2024-23897"
+  },
+  {
+    "software_id": 13,
+    "name": "Node.js",
+    "category": "JavaScript Runtime",
+    "vendor": "OpenJS Foundation",
+    "version_id": 19,
+    "version": "16.14.0",
+    "is_vulnerable": true,
+    "cve_ref": "CVE-2023-30533"
+  }
+]

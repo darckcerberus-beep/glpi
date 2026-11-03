@@ -1,0 +1,20 @@
+software_id,name,category,vendor,version_id,version,is_vulnerable,cve_ref
+1,Apache Tomcat,Application Server / Servlet Container,Apache Software Foundation,1,9.0.58,True,CVE-2022-22965
+1,Apache Tomcat,Application Server / Servlet Container,Apache Software Foundation,2,10.1.18,False,
+2,Spring Framework,Java Application Framework,VMware / Spring,3,5.3.18,True,CVE-2022-22965
+2,Spring Framework,Java Application Framework,VMware / Spring,4,6.0.14,False,
+3,Apache Log4j,Java Logging Framework,Apache Software Foundation,5,2.14.1,True,CVE-2021-44228
+3,Apache Log4j,Java Logging Framework,Apache Software Foundation,6,2.17.1,False,
+4,Nginx,Web Server / Reverse Proxy,F5 / Nginx,7,1.20.1,True,CVE-2023-44487
+4,Nginx,Web Server / Reverse Proxy,F5 / Nginx,8,1.24.0,False,
+5,OpenSSH,Remote Access / Secure Shell,OpenBSD Foundation,9,8.9p1,True,CVE-2024-6387
+5,OpenSSH,Remote Access / Secure Shell,OpenBSD Foundation,10,9.8p1,False,
+6,OpenSSL,Cryptographic Library,OpenSSL Project,11,1.1.1k,True,CVE-2022-3602
+6,OpenSSL,Cryptographic Library,OpenSSL Project,12,3.0.12,False,
+7,PostgreSQL,Relational Database Management System,PostgreSQL Global Development Group,13,14.8,False,
+8,Redis,In-Memory Data Store & Cache,Redis Ltd,14,6.2.5,False,
+9,RabbitMQ,Message Broker,VMware,15,3.9.15,False,
+10,Apache Spark,Distributed Computing Framework,Apache Software Foundation,16,3.2.0,True,CVE-2022-33891
+11,Apache HTTP Server,Web Server,Apache Software Foundation,17,2.4.49,True,CVE-2021-41773
+12,Jenkins,Continuous Integration Automation Server,Jenkins Project,18,2.441,True,CVE-2024-23897
+13,Node.js,JavaScript Runtime,OpenJS Foundation,19,16.14.0,True,CVE-2023-30533

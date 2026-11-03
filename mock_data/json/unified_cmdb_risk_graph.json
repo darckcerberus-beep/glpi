@@ -1,0 +1,1128 @@
+[
+  {
+    "id": 1,
+    "app_code": "APP-BANK-001",
+    "name": "Core Banking API Gateway",
+    "criticality": 4,
+    "criticality_label": "4 - Mission Critical (Tier 1)",
+    "environment": "production",
+    "exposure": "partner",
+    "business_unit": "Retail & Digital Banking",
+    "business_owner": "Sarah Jenkins (VP Digital Banking)",
+    "tech_lead": "Alex Rivera (Principal SRE)",
+    "team": "Banking Core Infrastructure",
+    "description": "High-throughput API gateway routing real-time customer account inquiries, ledger updates, and balance checks.",
+    "servers": [
+      {
+        "id": 1,
+        "hostname": "srv-bank-api-01.prod.internal",
+        "ip": "10.10.10.11",
+        "os": "Ubuntu Linux",
+        "os_version": "22.04 LTS",
+        "environment": "production",
+        "datacenter": "DC-Frankfurt-01",
+        "rack": "RACK-A04",
+        "cpu_cores": 16,
+        "ram_gb": 64,
+        "status": "In Service",
+        "primary_role": "Primary API Gateway",
+        "installed_software": [
+          {
+            "software_id": 5,
+            "software_name": "OpenSSH",
+            "version_id": 9,
+            "version": "8.9p1"
+          },
+          {
+            "software_id": 1,
+            "software_name": "Apache Tomcat",
+            "version_id": 1,
+            "version": "9.0.58"
+          },
+          {
+            "software_id": 2,
+            "software_name": "Spring Framework",
+            "version_id": 3,
+            "version": "5.3.18"
+          }
+        ],
+        "vulnerability_findings": [
+          {
+            "id": 1,
+            "vuln_id": 1,
+            "vuln_code": "QUALYS-377399",
+            "cve": "CVE-2024-6387",
+            "server_id": 1,
+            "hostname": "srv-bank-api-01.prod.internal",
+            "ip": "10.10.10.11",
+            "port": 22,
+            "protocol": "tcp",
+            "exposure": "internal",
+            "status": 2,
+            "status_label": "Active",
+            "first_found": "2024-07-02 04:12:00",
+            "last_found": "2024-11-03 02:00:00",
+            "times_found": 124,
+            "proof": "SSH banner reported: SSH-2.0-OpenSSH_8.9p1 Ubuntu-3ubuntu0.7. Vulnerable glibc-based OpenSSH sshd version detected without vendor patch for SIGALRM race condition.",
+            "remediation_ticket": "INC-89021",
+            "exploit_status": 1,
+            "cisa_kev": 0,
+            "exploitability_level": 2,
+            "exploitability_label": "Medium (Public PoC & Internal Network)",
+            "vulnerability": {
+              "id": 1,
+              "vuln_code": "QUALYS-377399",
+              "cve": "CVE-2024-6387",
+              "name": "OpenSSH Remote Code Execution (regreSSHion)",
+              "severity": 5,
+              "cvss_score": 8.1,
+              "exploit_status": 1,
+              "exploit_status_label": "Public Proof of Concept (PoC)",
+              "cisa_kev": 0,
+              "exploit_frameworks": "Exploit-DB, GitHub PoC",
+              "category": "Remote Code Execution",
+              "is_patchable": 1,
+              "published_date": "2024-07-01",
+              "description": "A signal handler race condition in OpenSSH sshd allows unauthenticated remote attackers to execute arbitrary code with root privileges on glibc-based Linux systems.",
+              "threat": "Attackers can exploit the race condition during asynchronous SIGALRM timeout handling to hijack execution flow and obtain an unauthenticated root shell.",
+              "impact": "Complete compromise of the underlying host, root privilege escalation, credential theft, and unauthorized lateral movement across the internal subnet.",
+              "solution": "Upgrade OpenSSH to version 9.8p1 or newer. Workaround: Set 'LoginGraceTime 0' in /etc/ssh/sshd_config (note: disables timeout and may expose to DoS)."
+            }
+          },
+          {
+            "id": 3,
+            "vuln_id": 3,
+            "vuln_code": "QUALYS-376527",
+            "cve": "CVE-2022-22965",
+            "server_id": 1,
+            "hostname": "srv-bank-api-01.prod.internal",
+            "ip": "10.10.10.11",
+            "port": 8080,
+            "protocol": "tcp",
+            "exposure": "partner",
+            "status": 2,
+            "status_label": "Active",
+            "first_found": "2024-05-10 14:22:15",
+            "last_found": "2024-11-03 02:00:00",
+            "times_found": 178,
+            "proof": "Spring Framework 5.3.18 detected running on Apache Tomcat 9.0.58. HTTP request parameter binding exposes classLoader attributes to manipulation.",
+            "remediation_ticket": "SEC-44102",
+            "exploit_status": 2,
+            "cisa_kev": 1,
+            "exploitability_level": 3,
+            "exploitability_label": "High (Weaponized Exploit & Partner Exposed)",
+            "vulnerability": {
+              "id": 3,
+              "vuln_code": "QUALYS-376527",
+              "cve": "CVE-2022-22965",
+              "name": "Spring Framework Remote Code Execution (Spring4Shell)",
+              "severity": 5,
+              "cvss_score": 9.8,
+              "exploit_status": 2,
+              "exploit_status_label": "Weaponized (Metasploit / Exploit Kit)",
+              "cisa_kev": 1,
+              "exploit_frameworks": "Metasploit, Exploit-DB, CISA KEV",
+              "category": "Remote Code Execution",
+              "is_patchable": 1,
+              "published_date": "2022-03-31",
+              "description": "A Spring MVC or Spring WebFlux application running on JDK 9+ may be vulnerable to remote code execution via data binding when packaged as a traditional WAR deployed to an Apache Tomcat servlet container.",
+              "threat": "Attackers manipulate ClassLoader properties via request parameter binding to modify Tomcat AccessLogValve patterns, writing a web shell directly to disk.",
+              "impact": "Persistent backdoor installation, remote arbitrary code execution, and data compromise.",
+              "solution": "Upgrade Spring Framework to version 5.3.18 / 6.0 or higher. Upgrade Tomcat to latest maintenance release."
+            }
+          }
+        ],
+        "application_role": "Primary API Gateway"
+      },
+      {
+        "id": 2,
+        "hostname": "srv-bank-api-02.prod.internal",
+        "ip": "10.10.10.12",
+        "os": "Ubuntu Linux",
+        "os_version": "22.04 LTS",
+        "environment": "production",
+        "datacenter": "DC-Frankfurt-01",
+        "rack": "RACK-A05",
+        "cpu_cores": 16,
+        "ram_gb": 64,
+        "status": "In Service",
+        "primary_role": "Secondary API Gateway",
+        "installed_software": [
+          {
+            "software_id": 5,
+            "software_name": "OpenSSH",
+            "version_id": 9,
+            "version": "8.9p1"
+          },
+          {
+            "software_id": 1,
+            "software_name": "Apache Tomcat",
+            "version_id": 1,
+            "version": "9.0.58"
+          },
+          {
+            "software_id": 2,
+            "software_name": "Spring Framework",
+            "version_id": 3,
+            "version": "5.3.18"
+          }
+        ],
+        "vulnerability_findings": [
+          {
+            "id": 2,
+            "vuln_id": 1,
+            "vuln_code": "QUALYS-377399",
+            "cve": "CVE-2024-6387",
+            "server_id": 2,
+            "hostname": "srv-bank-api-02.prod.internal",
+            "ip": "10.10.10.12",
+            "port": 22,
+            "protocol": "tcp",
+            "exposure": "internal",
+            "status": 2,
+            "status_label": "Active",
+            "first_found": "2024-07-02 04:15:00",
+            "last_found": "2024-11-03 02:00:00",
+            "times_found": 124,
+            "proof": "SSH banner reported: SSH-2.0-OpenSSH_8.9p1 Ubuntu-3ubuntu0.7. System vulnerable to regreSSHion unauthenticated RCE.",
+            "remediation_ticket": "INC-89022",
+            "exploit_status": 1,
+            "cisa_kev": 0,
+            "exploitability_level": 2,
+            "exploitability_label": "Medium (Public PoC & Internal Network)",
+            "vulnerability": {
+              "id": 1,
+              "vuln_code": "QUALYS-377399",
+              "cve": "CVE-2024-6387",
+              "name": "OpenSSH Remote Code Execution (regreSSHion)",
+              "severity": 5,
+              "cvss_score": 8.1,
+              "exploit_status": 1,
+              "exploit_status_label": "Public Proof of Concept (PoC)",
+              "cisa_kev": 0,
+              "exploit_frameworks": "Exploit-DB, GitHub PoC",
+              "category": "Remote Code Execution",
+              "is_patchable": 1,
+              "published_date": "2024-07-01",
+              "description": "A signal handler race condition in OpenSSH sshd allows unauthenticated remote attackers to execute arbitrary code with root privileges on glibc-based Linux systems.",
+              "threat": "Attackers can exploit the race condition during asynchronous SIGALRM timeout handling to hijack execution flow and obtain an unauthenticated root shell.",
+              "impact": "Complete compromise of the underlying host, root privilege escalation, credential theft, and unauthorized lateral movement across the internal subnet.",
+              "solution": "Upgrade OpenSSH to version 9.8p1 or newer. Workaround: Set 'LoginGraceTime 0' in /etc/ssh/sshd_config (note: disables timeout and may expose to DoS)."
+            }
+          },
+          {
+            "id": 4,
+            "vuln_id": 3,
+            "vuln_code": "QUALYS-376527",
+            "cve": "CVE-2022-22965",
+            "server_id": 2,
+            "hostname": "srv-bank-api-02.prod.internal",
+            "ip": "10.10.10.12",
+            "port": 8080,
+            "protocol": "tcp",
+            "exposure": "partner",
+            "status": 2,
+            "status_label": "Active",
+            "first_found": "2024-05-10 14:25:10",
+            "last_found": "2024-11-03 02:00:00",
+            "times_found": 178,
+            "proof": "Spring Framework 5.3.18 on Tomcat 9.0.58 detected. Verified data-binding ClassLoader access on /api/v1 endpoints.",
+            "remediation_ticket": "SEC-44103",
+            "exploit_status": 2,
+            "cisa_kev": 1,
+            "exploitability_level": 3,
+            "exploitability_label": "High (Weaponized Exploit & Partner Exposed)",
+            "vulnerability": {
+              "id": 3,
+              "vuln_code": "QUALYS-376527",
+              "cve": "CVE-2022-22965",
+              "name": "Spring Framework Remote Code Execution (Spring4Shell)",
+              "severity": 5,
+              "cvss_score": 9.8,
+              "exploit_status": 2,
+              "exploit_status_label": "Weaponized (Metasploit / Exploit Kit)",
+              "cisa_kev": 1,
+              "exploit_frameworks": "Metasploit, Exploit-DB, CISA KEV",
+              "category": "Remote Code Execution",
+              "is_patchable": 1,
+              "published_date": "2022-03-31",
+              "description": "A Spring MVC or Spring WebFlux application running on JDK 9+ may be vulnerable to remote code execution via data binding when packaged as a traditional WAR deployed to an Apache Tomcat servlet container.",
+              "threat": "Attackers manipulate ClassLoader properties via request parameter binding to modify Tomcat AccessLogValve patterns, writing a web shell directly to disk.",
+              "impact": "Persistent backdoor installation, remote arbitrary code execution, and data compromise.",
+              "solution": "Upgrade Spring Framework to version 5.3.18 / 6.0 or higher. Upgrade Tomcat to latest maintenance release."
+            }
+          }
+        ],
+        "application_role": "Secondary API Gateway"
+      },
+      {
+        "id": 3,
+        "hostname": "srv-bank-db-01.prod.internal",
+        "ip": "10.10.10.21",
+        "os": "Red Hat Enterprise Linux",
+        "os_version": "9.2",
+        "environment": "production",
+        "datacenter": "DC-Frankfurt-01",
+        "rack": "RACK-B01",
+        "cpu_cores": 32,
+        "ram_gb": 256,
+        "status": "In Service",
+        "primary_role": "Primary Relational DB",
+        "installed_software": [
+          {
+            "software_id": 5,
+            "software_name": "OpenSSH",
+            "version_id": 10,
+            "version": "9.8p1"
+          },
+          {
+            "software_id": 7,
+            "software_name": "PostgreSQL",
+            "version_id": 13,
+            "version": "14.8"
+          }
+        ],
+        "vulnerability_findings": [],
+        "application_role": "Transactional Database"
+      }
+    ],
+    "total_findings_count": 4,
+    "open_critical_findings_count": 4
+  },
+  {
+    "id": 2,
+    "app_code": "APP-ECOM-002",
+    "name": "Customer E-Commerce Storefront",
+    "criticality": 4,
+    "criticality_label": "4 - Mission Critical (Tier 1)",
+    "environment": "production",
+    "exposure": "external",
+    "business_unit": "Digital Commerce",
+    "business_owner": "Michael Chang (VP Customer Experience)",
+    "tech_lead": "Elena Rostova (Lead Web Architect)",
+    "team": "Frontend Operations",
+    "description": "Public-facing international shopping platform, product catalog search, and customer checkout engine.",
+    "servers": [
+      {
+        "id": 4,
+        "hostname": "srv-ecom-web-01.prod.internal",
+        "ip": "10.20.10.11",
+        "os": "Debian GNU/Linux",
+        "os_version": "12.1",
+        "environment": "production",
+        "datacenter": "DC-Amsterdam-02",
+        "rack": "RACK-W01",
+        "cpu_cores": 8,
+        "ram_gb": 32,
+        "status": "In Service",
+        "primary_role": "Web Reverse Proxy / Load Balancer",
+        "installed_software": [
+          {
+            "software_id": 4,
+            "software_name": "Nginx",
+            "version_id": 7,
+            "version": "1.20.1"
+          },
+          {
+            "software_id": 5,
+            "software_name": "OpenSSH",
+            "version_id": 9,
+            "version": "8.9p1"
+          }
+        ],
+        "vulnerability_findings": [
+          {
+            "id": 5,
+            "vuln_id": 4,
+            "vuln_code": "QUALYS-377701",
+            "cve": "CVE-2023-44487",
+            "server_id": 4,
+            "hostname": "srv-ecom-web-01.prod.internal",
+            "ip": "10.20.10.11",
+            "port": 443,
+            "protocol": "tcp",
+            "exposure": "external",
+            "status": 2,
+            "status_label": "Active",
+            "first_found": "2023-10-15 08:30:00",
+            "last_found": "2024-11-03 02:00:00",
+            "times_found": 384,
+            "proof": "Nginx/1.20.1 detected on TLS port 443 supporting HTTP/2 with rapid reset stream vulnerability unpatched.",
+            "remediation_ticket": "SEC-55091",
+            "exploit_status": 3,
+            "cisa_kev": 1,
+            "exploitability_level": 4,
+            "exploitability_label": "Critical (Actively Exploited & Internet-Facing)",
+            "vulnerability": {
+              "id": 4,
+              "vuln_code": "QUALYS-377701",
+              "cve": "CVE-2023-44487",
+              "name": "HTTP/2 Rapid Reset Denial of Service",
+              "severity": 4,
+              "cvss_score": 7.5,
+              "exploit_status": 3,
+              "exploit_status_label": "Actively Exploited in the Wild (CISA KEV)",
+              "cisa_kev": 1,
+              "exploit_frameworks": "In The Wild DDoS scripts, CISA KEV",
+              "category": "Denial of Service",
+              "is_patchable": 1,
+              "published_date": "2023-10-10",
+              "description": "The HTTP/2 protocol allows a denial of service (server resource consumption) because request cancellation can reset many streams rapidly without the server being able to enforce rate limits.",
+              "threat": "A single client can send high volumes of RST_STREAM frames immediately following HEADERS frames, exhausting server CPU and memory resources.",
+              "impact": "Service degradation or complete unavailability for legitimate users across public web services.",
+              "solution": "Apply vendor security updates to Nginx (1.25.3 / 1.24.1+), Apache HTTP Server, or cloud load balancers; configure HTTP/2 stream limiters."
+            }
+          }
+        ],
+        "application_role": "Web Load Balancer (Front)"
+      },
+      {
+        "id": 5,
+        "hostname": "srv-ecom-web-02.prod.internal",
+        "ip": "10.20.10.12",
+        "os": "Debian GNU/Linux",
+        "os_version": "12.1",
+        "environment": "production",
+        "datacenter": "DC-Amsterdam-02",
+        "rack": "RACK-W02",
+        "cpu_cores": 8,
+        "ram_gb": 32,
+        "status": "In Service",
+        "primary_role": "Web Reverse Proxy / Load Balancer",
+        "installed_software": [
+          {
+            "software_id": 4,
+            "software_name": "Nginx",
+            "version_id": 7,
+            "version": "1.20.1"
+          },
+          {
+            "software_id": 5,
+            "software_name": "OpenSSH",
+            "version_id": 9,
+            "version": "8.9p1"
+          }
+        ],
+        "vulnerability_findings": [
+          {
+            "id": 6,
+            "vuln_id": 4,
+            "vuln_code": "QUALYS-377701",
+            "cve": "CVE-2023-44487",
+            "server_id": 5,
+            "hostname": "srv-ecom-web-02.prod.internal",
+            "ip": "10.20.10.12",
+            "port": 443,
+            "protocol": "tcp",
+            "exposure": "external",
+            "status": 2,
+            "status_label": "Active",
+            "first_found": "2023-10-15 08:35:00",
+            "last_found": "2024-11-03 02:00:00",
+            "times_found": 384,
+            "proof": "Nginx/1.20.1 detected on TLS port 443. Target vulnerable to rapid RST_STREAM DDoS attack.",
+            "remediation_ticket": "SEC-55092",
+            "exploit_status": 3,
+            "cisa_kev": 1,
+            "exploitability_level": 4,
+            "exploitability_label": "Critical (Actively Exploited & Internet-Facing)",
+            "vulnerability": {
+              "id": 4,
+              "vuln_code": "QUALYS-377701",
+              "cve": "CVE-2023-44487",
+              "name": "HTTP/2 Rapid Reset Denial of Service",
+              "severity": 4,
+              "cvss_score": 7.5,
+              "exploit_status": 3,
+              "exploit_status_label": "Actively Exploited in the Wild (CISA KEV)",
+              "cisa_kev": 1,
+              "exploit_frameworks": "In The Wild DDoS scripts, CISA KEV",
+              "category": "Denial of Service",
+              "is_patchable": 1,
+              "published_date": "2023-10-10",
+              "description": "The HTTP/2 protocol allows a denial of service (server resource consumption) because request cancellation can reset many streams rapidly without the server being able to enforce rate limits.",
+              "threat": "A single client can send high volumes of RST_STREAM frames immediately following HEADERS frames, exhausting server CPU and memory resources.",
+              "impact": "Service degradation or complete unavailability for legitimate users across public web services.",
+              "solution": "Apply vendor security updates to Nginx (1.25.3 / 1.24.1+), Apache HTTP Server, or cloud load balancers; configure HTTP/2 stream limiters."
+            }
+          }
+        ],
+        "application_role": "Web Load Balancer (Front)"
+      },
+      {
+        "id": 6,
+        "hostname": "srv-ecom-app-01.prod.internal",
+        "ip": "10.20.10.21",
+        "os": "Ubuntu Linux",
+        "os_version": "20.04 LTS",
+        "environment": "production",
+        "datacenter": "DC-Amsterdam-02",
+        "rack": "RACK-W03",
+        "cpu_cores": 16,
+        "ram_gb": 64,
+        "status": "In Service",
+        "primary_role": "E-Commerce Application Server",
+        "installed_software": [
+          {
+            "software_id": 3,
+            "software_name": "Apache Log4j",
+            "version_id": 5,
+            "version": "2.14.1"
+          },
+          {
+            "software_id": 13,
+            "software_name": "Node.js",
+            "version_id": 19,
+            "version": "16.14.0"
+          },
+          {
+            "software_id": 5,
+            "software_name": "OpenSSH",
+            "version_id": 9,
+            "version": "8.9p1"
+          }
+        ],
+        "vulnerability_findings": [
+          {
+            "id": 7,
+            "vuln_id": 2,
+            "vuln_code": "QUALYS-376157",
+            "cve": "CVE-2021-44228",
+            "server_id": 6,
+            "hostname": "srv-ecom-app-01.prod.internal",
+            "ip": "10.20.10.21",
+            "port": 8443,
+            "protocol": "tcp",
+            "exposure": "external",
+            "status": 2,
+            "status_label": "Active",
+            "first_found": "2024-01-12 11:00:00",
+            "last_found": "2024-11-03 02:00:00",
+            "times_found": 296,
+            "proof": "Log4j core library version 2.14.1 found in /opt/ecom/app/lib/log4j-core-2.14.1.jar. JndiLookup class present in archive.",
+            "remediation_ticket": "INC-77180",
+            "exploit_status": 3,
+            "cisa_kev": 1,
+            "exploitability_level": 4,
+            "exploitability_label": "Critical (Actively Exploited & Internet-Facing)",
+            "vulnerability": {
+              "id": 2,
+              "vuln_code": "QUALYS-376157",
+              "cve": "CVE-2021-44228",
+              "name": "Apache Log4j JNDI Remote Code Execution (Log4Shell)",
+              "severity": 5,
+              "cvss_score": 10.0,
+              "exploit_status": 3,
+              "exploit_status_label": "Actively Exploited in the Wild (CISA KEV)",
+              "cisa_kev": 1,
+              "exploit_frameworks": "Metasploit, Core Impact, Exploit-DB, CISA KEV",
+              "category": "Remote Code Execution",
+              "is_patchable": 1,
+              "published_date": "2021-12-10",
+              "description": "Apache Log4j2 versions 2.0-beta9 through 2.14.1 JNDI features used in configuration, log messages, and parameters do not protect against attacker-controlled LDAP and other JNDI related endpoints.",
+              "threat": "An unauthenticated remote attacker can submit a crafted string containing '${jndi:ldap://...}' in HTTP headers, parameters, or forms, forcing the vulnerable server to load and execute malicious arbitrary Java byte code.",
+              "impact": "Full takeover of the application server container, shell access, exfiltration of environment variables, secrets, and database credentials.",
+              "solution": "Upgrade Log4j to 2.17.1 or higher. Immediate workaround: set system property 'log4j2.formatMsgNoLookups=true' or remove JndiLookup.class from log4j-core JAR."
+            }
+          }
+        ],
+        "application_role": "Application Server"
+      },
+      {
+        "id": 7,
+        "hostname": "srv-ecom-cache-01.prod.internal",
+        "ip": "10.20.10.31",
+        "os": "Debian GNU/Linux",
+        "os_version": "12.1",
+        "environment": "production",
+        "datacenter": "DC-Amsterdam-02",
+        "rack": "RACK-W04",
+        "cpu_cores": 8,
+        "ram_gb": 32,
+        "status": "In Service",
+        "primary_role": "Redis Cache & Session Store",
+        "installed_software": [
+          {
+            "software_id": 8,
+            "software_name": "Redis",
+            "version_id": 14,
+            "version": "6.2.5"
+          },
+          {
+            "software_id": 5,
+            "software_name": "OpenSSH",
+            "version_id": 10,
+            "version": "9.8p1"
+          }
+        ],
+        "vulnerability_findings": [],
+        "application_role": "Session Cache"
+      }
+    ],
+    "total_findings_count": 3,
+    "open_critical_findings_count": 1
+  },
+  {
+    "id": 3,
+    "app_code": "APP-PAY-003",
+    "name": "Global Payment Settlement Engine",
+    "criticality": 4,
+    "criticality_label": "4 - Mission Critical (Tier 1)",
+    "environment": "production",
+    "exposure": "external",
+    "business_unit": "Payment Services",
+    "business_owner": "David Chen (Director of Merchant Solutions)",
+    "tech_lead": "Marcus Brody (Security & Compliance Lead)",
+    "team": "Payments Engineering",
+    "description": "PCI-DSS Level 1 compliant credit card processing, 3D-Secure 2.0 authorization, and SEPA/SWIFT clearing system.",
+    "servers": [
+      {
+        "id": 8,
+        "hostname": "srv-pay-proc-01.pci.internal",
+        "ip": "10.30.10.10",
+        "os": "Red Hat Enterprise Linux",
+        "os_version": "8.8",
+        "environment": "production",
+        "datacenter": "DC-Dublin-PCI",
+        "rack": "RACK-PCI-01",
+        "cpu_cores": 16,
+        "ram_gb": 64,
+        "status": "In Service",
+        "primary_role": "Transaction Processing Engine",
+        "installed_software": [
+          {
+            "software_id": 6,
+            "software_name": "OpenSSL",
+            "version_id": 11,
+            "version": "1.1.1k"
+          },
+          {
+            "software_id": 9,
+            "software_name": "RabbitMQ",
+            "version_id": 15,
+            "version": "3.9.15"
+          },
+          {
+            "software_id": 5,
+            "software_name": "OpenSSH",
+            "version_id": 9,
+            "version": "8.9p1"
+          }
+        ],
+        "vulnerability_findings": [
+          {
+            "id": 8,
+            "vuln_id": 5,
+            "vuln_code": "QUALYS-376911",
+            "cve": "CVE-2022-3602",
+            "server_id": 8,
+            "hostname": "srv-pay-proc-01.pci.internal",
+            "ip": "10.30.10.10",
+            "port": 443,
+            "protocol": "tcp",
+            "exposure": "external",
+            "status": 2,
+            "status_label": "Active",
+            "first_found": "2023-01-05 09:14:00",
+            "last_found": "2024-11-03 02:00:00",
+            "times_found": 668,
+            "proof": "OpenSSL 1.1.1k FIPS 25 Mar 2021 detected. Subject Alternative Name punycode parser contains vulnerable stack buffer overflow.",
+            "remediation_ticket": "PCI-VULN-09",
+            "exploit_status": 0,
+            "cisa_kev": 0,
+            "exploitability_level": 2,
+            "exploitability_label": "Medium (Exposed Surface, No Public Exploit)",
+            "vulnerability": {
+              "id": 5,
+              "vuln_code": "QUALYS-376911",
+              "cve": "CVE-2022-3602",
+              "name": "OpenSSL X.509 Email Address Buffer Overflow",
+              "severity": 4,
+              "cvss_score": 7.5,
+              "exploit_status": 0,
+              "exploit_status_label": "None / Unproven",
+              "cisa_kev": 0,
+              "exploit_frameworks": "None",
+              "category": "Memory Corruption / RCE",
+              "is_patchable": 1,
+              "published_date": "2022-11-01",
+              "description": "A 4-byte stack buffer overflow can occur in OpenSSL during X.509 certificate verification, specifically in name constraint checking of email addresses.",
+              "threat": "Maliciously crafted TLS client certificates containing punycode email addresses can trigger stack buffer corruption during TLS handshake verification.",
+              "impact": "Denial of service (crash) or potential arbitrary code execution under specific compiler stack layouts.",
+              "solution": "Upgrade OpenSSL to version 3.0.7 or later (or 1.1.1s for 1.1.1 series)."
+            }
+          }
+        ],
+        "application_role": "Payment Settlement Core"
+      },
+      {
+        "id": 9,
+        "hostname": "srv-pay-hsm-01.pci.internal",
+        "ip": "10.30.10.20",
+        "os": "Hardened Linux",
+        "os_version": "Enterprise 5.4",
+        "environment": "production",
+        "datacenter": "DC-Dublin-PCI",
+        "rack": "RACK-PCI-02",
+        "cpu_cores": 8,
+        "ram_gb": 16,
+        "status": "In Service",
+        "primary_role": "Hardware Security Module (HSM) Proxy",
+        "installed_software": [
+          {
+            "software_id": 6,
+            "software_name": "OpenSSL",
+            "version_id": 12,
+            "version": "3.0.12"
+          }
+        ],
+        "vulnerability_findings": [],
+        "application_role": "Hardware Security Module"
+      }
+    ],
+    "total_findings_count": 1,
+    "open_critical_findings_count": 0
+  },
+  {
+    "id": 4,
+    "app_code": "APP-DATA-004",
+    "name": "Real-Time Fraud & Risk Analytics Pipeline",
+    "criticality": 3,
+    "criticality_label": "3 - High (Tier 2)",
+    "environment": "production",
+    "exposure": "internal",
+    "business_unit": "Risk Management & Compliance",
+    "business_owner": "Patricia Howard (Chief Risk Officer)",
+    "tech_lead": "Vikram Patel (Principal Data Engineer)",
+    "team": "Data Platform Team",
+    "description": "Streaming analytics pipeline utilizing Apache Spark and machine learning models for anomaly scoring on transactions.",
+    "servers": [
+      {
+        "id": 10,
+        "hostname": "srv-data-spark-01.prod.internal",
+        "ip": "10.50.10.31",
+        "os": "Ubuntu Linux",
+        "os_version": "22.04 LTS",
+        "environment": "production",
+        "datacenter": "DC-Frankfurt-01",
+        "rack": "RACK-D01",
+        "cpu_cores": 32,
+        "ram_gb": 128,
+        "status": "In Service",
+        "primary_role": "Spark Master Node",
+        "installed_software": [
+          {
+            "software_id": 10,
+            "software_name": "Apache Spark",
+            "version_id": 16,
+            "version": "3.2.0"
+          },
+          {
+            "software_id": 5,
+            "software_name": "OpenSSH",
+            "version_id": 9,
+            "version": "8.9p1"
+          }
+        ],
+        "vulnerability_findings": [
+          {
+            "id": 9,
+            "vuln_id": 7,
+            "vuln_code": "QUALYS-376689",
+            "cve": "CVE-2022-33891",
+            "server_id": 10,
+            "hostname": "srv-data-spark-01.prod.internal",
+            "ip": "10.50.10.31",
+            "port": 8080,
+            "protocol": "tcp",
+            "exposure": "internal",
+            "status": 2,
+            "status_label": "Active",
+            "first_found": "2024-03-20 16:45:00",
+            "last_found": "2024-11-03 02:00:00",
+            "times_found": 228,
+            "proof": "Apache Spark Web UI version 3.2.0 responding on port 8080. Endpoint vulnerable to command injection via 'doAs' query parameter.",
+            "remediation_ticket": "DATA-SEC-102",
+            "exploit_status": 1,
+            "cisa_kev": 0,
+            "exploitability_level": 2,
+            "exploitability_label": "Medium (Public PoC & Internal Network)",
+            "vulnerability": {
+              "id": 7,
+              "vuln_code": "QUALYS-376689",
+              "cve": "CVE-2022-33891",
+              "name": "Apache Spark Command Injection via ACL",
+              "severity": 4,
+              "cvss_score": 8.8,
+              "exploit_status": 1,
+              "exploit_status_label": "Public Proof of Concept (PoC)",
+              "cisa_kev": 0,
+              "exploit_frameworks": "GitHub PoC, Nuclei",
+              "category": "Command Injection",
+              "is_patchable": 1,
+              "published_date": "2022-07-18",
+              "description": "Apache Spark UI enables ACLs via 'spark.acls.enable'. With an improper configuration, a bash command is executed through Unix shell for user authentication with arbitrarily supplied user input.",
+              "threat": "Attackers can supply arbitrary shell commands within the '?doAs=' HTTP query parameter when accessing the Spark Web UI.",
+              "impact": "Remote shell execution under the spark system user account on the master node.",
+              "solution": "Upgrade Apache Spark to 3.2.2, 3.3.0, or newer."
+            }
+          }
+        ],
+        "application_role": "Spark Analytics Master"
+      },
+      {
+        "id": 11,
+        "hostname": "srv-data-worker-01.prod.internal",
+        "ip": "10.50.10.32",
+        "os": "Ubuntu Linux",
+        "os_version": "22.04 LTS",
+        "environment": "production",
+        "datacenter": "DC-Frankfurt-01",
+        "rack": "RACK-D02",
+        "cpu_cores": 32,
+        "ram_gb": 128,
+        "status": "In Service",
+        "primary_role": "Spark Analytics Worker",
+        "installed_software": [
+          {
+            "software_id": 10,
+            "software_name": "Apache Spark",
+            "version_id": 16,
+            "version": "3.2.0"
+          },
+          {
+            "software_id": 5,
+            "software_name": "OpenSSH",
+            "version_id": 9,
+            "version": "8.9p1"
+          }
+        ],
+        "vulnerability_findings": [],
+        "application_role": "Spark Worker Node"
+      }
+    ],
+    "total_findings_count": 1,
+    "open_critical_findings_count": 0
+  },
+  {
+    "id": 5,
+    "app_code": "APP-HR-005",
+    "name": "Human Resources & Payroll Hub",
+    "criticality": 2,
+    "criticality_label": "2 - Medium (Tier 3)",
+    "environment": "production",
+    "exposure": "internal",
+    "business_unit": "People & Organization",
+    "business_owner": "Claire Dubois (Head of HR Ops)",
+    "tech_lead": "Thomas Weber (Enterprise Systems Specialist)",
+    "team": "Corporate Systems",
+    "description": "Internal employee self-service portal, annual compensation review, payroll records, and benefits administration.",
+    "servers": [
+      {
+        "id": 12,
+        "hostname": "srv-hr-app-01.corp.internal",
+        "ip": "10.40.10.15",
+        "os": "Ubuntu Linux",
+        "os_version": "22.04 LTS",
+        "environment": "production",
+        "datacenter": "DC-Frankfurt-01",
+        "rack": "RACK-C03",
+        "cpu_cores": 8,
+        "ram_gb": 32,
+        "status": "In Service",
+        "primary_role": "HR Self-Service Host",
+        "installed_software": [
+          {
+            "software_id": 11,
+            "software_name": "Apache HTTP Server",
+            "version_id": 17,
+            "version": "2.4.49"
+          },
+          {
+            "software_id": 5,
+            "software_name": "OpenSSH",
+            "version_id": 9,
+            "version": "8.9p1"
+          }
+        ],
+        "vulnerability_findings": [
+          {
+            "id": 10,
+            "vuln_id": 8,
+            "vuln_code": "QUALYS-376044",
+            "cve": "CVE-2021-41773",
+            "server_id": 12,
+            "hostname": "srv-hr-app-01.corp.internal",
+            "ip": "10.40.10.15",
+            "port": 80,
+            "protocol": "tcp",
+            "exposure": "internal",
+            "status": 4,
+            "status_label": "Fixed",
+            "first_found": "2023-06-01 10:00:00",
+            "last_found": "2023-06-15 14:00:00",
+            "times_found": 15,
+            "proof": "Historical detection: Apache/2.4.49 path traversal test returned /etc/passwd contents. Host subsequently patched to 2.4.54.",
+            "remediation_ticket": "HR-CORP-401",
+            "exploit_status": 2,
+            "cisa_kev": 1,
+            "exploitability_level": 3,
+            "exploitability_label": "High (Weaponized Exploit - Internal Network)",
+            "vulnerability": {
+              "id": 8,
+              "vuln_code": "QUALYS-376044",
+              "cve": "CVE-2021-41773",
+              "name": "Apache HTTP Server Path Traversal & Remote Code Execution",
+              "severity": 4,
+              "cvss_score": 7.5,
+              "exploit_status": 2,
+              "exploit_status_label": "Weaponized (Metasploit / Exploit Kit)",
+              "cisa_kev": 1,
+              "exploit_frameworks": "Metasploit, Exploit-DB, CISA KEV",
+              "category": "Path Traversal / RCE",
+              "is_patchable": 1,
+              "published_date": "2021-10-05",
+              "description": "A flaw was found in a change made to path normalization in Apache HTTP Server 2.4.49. An attacker could use a path traversal attack to map URLs to files outside the directories configured by Alias-like directives.",
+              "threat": "If files outside of document roots are not protected by 'require all denied' and mod_cgi is enabled, path traversal triggers arbitrary CGI script execution.",
+              "impact": "Arbitrary file disclosure (e.g., /etc/passwd) and execution of system commands.",
+              "solution": "Upgrade Apache HTTP Server to version 2.4.51 or higher."
+            }
+          }
+        ],
+        "application_role": "Corporate HR Portal Host"
+      }
+    ],
+    "total_findings_count": 1,
+    "open_critical_findings_count": 0
+  },
+  {
+    "id": 6,
+    "app_code": "APP-OPS-006",
+    "name": "DevOps CI/CD Automation Platform",
+    "criticality": 3,
+    "criticality_label": "3 - High (Tier 2)",
+    "environment": "production",
+    "exposure": "internal",
+    "business_unit": "Engineering Platform",
+    "business_owner": "Arjun Mehta (VP Platform Engineering)",
+    "tech_lead": "Samira Khan (Staff DevOps Engineer)",
+    "team": "Platform SRE",
+    "description": "Central build and continuous delivery cluster orchestrating container builds, vulnerability scans, and deployments.",
+    "servers": [
+      {
+        "id": 13,
+        "hostname": "srv-ops-ci-01.corp.internal",
+        "ip": "10.60.10.50",
+        "os": "Ubuntu Linux",
+        "os_version": "22.04 LTS",
+        "environment": "production",
+        "datacenter": "DC-Frankfurt-01",
+        "rack": "RACK-O01",
+        "cpu_cores": 24,
+        "ram_gb": 96,
+        "status": "In Service",
+        "primary_role": "Jenkins CI Master & Build Engine",
+        "installed_software": [
+          {
+            "software_id": 12,
+            "software_name": "Jenkins",
+            "version_id": 18,
+            "version": "2.441"
+          },
+          {
+            "software_id": 5,
+            "software_name": "OpenSSH",
+            "version_id": 9,
+            "version": "8.9p1"
+          }
+        ],
+        "vulnerability_findings": [
+          {
+            "id": 11,
+            "vuln_id": 6,
+            "vuln_code": "QUALYS-377450",
+            "cve": "CVE-2024-23897",
+            "server_id": 13,
+            "hostname": "srv-ops-ci-01.corp.internal",
+            "ip": "10.60.10.50",
+            "port": 8080,
+            "protocol": "tcp",
+            "exposure": "internal",
+            "status": 1,
+            "status_label": "New",
+            "first_found": "2024-11-01 18:30:00",
+            "last_found": "2024-11-03 02:00:00",
+            "times_found": 3,
+            "proof": "Jenkins 2.441 CLI interface exposed on port 8080. Command argument parser supports '@' arbitrary file expansion without authentication.",
+            "remediation_ticket": "OPS-SECTOKEN-33",
+            "exploit_status": 2,
+            "cisa_kev": 1,
+            "exploitability_level": 3,
+            "exploitability_label": "High (Weaponized Exploit - Internal Network)",
+            "vulnerability": {
+              "id": 6,
+              "vuln_code": "QUALYS-377450",
+              "cve": "CVE-2024-23897",
+              "name": "Jenkins CLI Arbitrary File Read Vulnerability",
+              "severity": 5,
+              "cvss_score": 9.8,
+              "exploit_status": 2,
+              "exploit_status_label": "Weaponized (Metasploit / Exploit Kit)",
+              "cisa_kev": 1,
+              "exploit_frameworks": "Metasploit, Exploit-DB, CISA KEV",
+              "category": "Information Disclosure / RCE",
+              "is_patchable": 1,
+              "published_date": "2024-01-24",
+              "description": "Jenkins uses the args4j library to parse command arguments on the Jenkins controller. This parser features '@' character argument expansion which replaces '@' followed by a file path with file contents.",
+              "threat": "Unauthenticated attackers with read access can read the first few lines of arbitrary files on the Jenkins controller filesystem, or full files with admin privileges, enabling cryptographic key extraction and full RCE.",
+              "impact": "Extraction of credentials, encryption master keys, source code, and potential elevation to full controller remote execution.",
+              "solution": "Upgrade Jenkins core to 2.442 or LTS 2.426.3. Immediate workaround: disable CLI access via script console."
+            }
+          }
+        ],
+        "application_role": "CI/CD Master Build Host"
+      }
+    ],
+    "total_findings_count": 1,
+    "open_critical_findings_count": 1
+  },
+  {
+    "id": 7,
+    "app_code": "APP-STG-007",
+    "name": "Customer Support Staging Environment",
+    "criticality": 1,
+    "criticality_label": "1 - Low (Tier 4)",
+    "environment": "staging",
+    "exposure": "internal",
+    "business_unit": "Customer Support",
+    "business_owner": "Laura Gomez (Support Director)",
+    "tech_lead": "Kevin O'Connor (QA Lead)",
+    "team": "QA & Automation",
+    "description": "Pre-production mirror used for regression validation and customer support agent training before releases.",
+    "servers": [
+      {
+        "id": 14,
+        "hostname": "srv-sup-stage-01.stg.internal",
+        "ip": "10.70.10.88",
+        "os": "Debian GNU/Linux",
+        "os_version": "11.7",
+        "environment": "staging",
+        "datacenter": "DC-Frankfurt-01",
+        "rack": "RACK-T01",
+        "cpu_cores": 4,
+        "ram_gb": 16,
+        "status": "In Service",
+        "primary_role": "Staging Support Application",
+        "installed_software": [
+          {
+            "software_id": 13,
+            "software_name": "Node.js",
+            "version_id": 19,
+            "version": "16.14.0"
+          },
+          {
+            "software_id": 5,
+            "software_name": "OpenSSH",
+            "version_id": 9,
+            "version": "8.9p1"
+          }
+        ],
+        "vulnerability_findings": [
+          {
+            "id": 12,
+            "vuln_id": 9,
+            "vuln_code": "QUALYS-377120",
+            "cve": "CVE-2023-30533",
+            "server_id": 14,
+            "hostname": "srv-sup-stage-01.stg.internal",
+            "ip": "10.70.10.88",
+            "port": 3000,
+            "protocol": "tcp",
+            "exposure": "internal",
+            "status": 5,
+            "status_label": "Ignored",
+            "first_found": "2024-04-10 11:20:00",
+            "last_found": "2024-11-03 02:00:00",
+            "times_found": 208,
+            "proof": "Node.js v16.14.0 stream prototype pollution vulnerability detected in staging environment. Risk accepted by QA lead for test lab.",
+            "remediation_ticket": "RISK-ACCEPT-012",
+            "exploit_status": 0,
+            "cisa_kev": 0,
+            "exploitability_level": 1,
+            "exploitability_label": "Low (Internal Network, No Public Exploit)",
+            "vulnerability": {
+              "id": 9,
+              "vuln_code": "QUALYS-377120",
+              "cve": "CVE-2023-30533",
+              "name": "Node.js Prototype Pollution in Core Stream APIs",
+              "severity": 3,
+              "cvss_score": 6.5,
+              "exploit_status": 0,
+              "exploit_status_label": "None / Unproven",
+              "cisa_kev": 0,
+              "exploit_frameworks": "None",
+              "category": "Prototype Pollution",
+              "is_patchable": 1,
+              "published_date": "2023-06-20",
+              "description": "Node.js contains a prototype pollution vulnerability in stream processing when untrusted user input is passed without sanitization into internal object properties.",
+              "threat": "Attackers can manipulate JavaScript Object prototypes leading to unexpected logic bypass or application crash.",
+              "impact": "Service disruption and potential authentication bypass depending on application property lookups.",
+              "solution": "Upgrade Node.js to 16.20.1, 18.16.1, or 20.3.1."
+            }
+          }
+        ],
+        "application_role": "Staging Application Server"
+      }
+    ],
+    "total_findings_count": 1,
+    "open_critical_findings_count": 0
+  },
+  {
+    "id": 8,
+    "app_code": "APP-DR-008",
+    "name": "Disaster Recovery Standby Core",
+    "criticality": 4,
+    "criticality_label": "4 - Mission Critical (Tier 1)",
+    "environment": "dr",
+    "exposure": "internal",
+    "business_unit": "Business Continuity",
+    "business_owner": "Robert Henderson (Head of BCP)",
+    "tech_lead": "Alex Rivera (Principal SRE)",
+    "team": "Banking Core Infrastructure",
+    "description": "Warm standby cluster synchronized asynchronously with Core Banking API and ledger databases in secondary DC.",
+    "servers": [
+      {
+        "id": 15,
+        "hostname": "srv-dr-core-01.dr.internal",
+        "ip": "10.80.10.101",
+        "os": "Red Hat Enterprise Linux",
+        "os_version": "9.2",
+        "environment": "dr",
+        "datacenter": "DC-Paris-DR",
+        "rack": "RACK-DR-01",
+        "cpu_cores": 32,
+        "ram_gb": 256,
+        "status": "In Service",
+        "primary_role": "Disaster Recovery Warm Standby",
+        "installed_software": [
+          {
+            "software_id": 7,
+            "software_name": "PostgreSQL",
+            "version_id": 13,
+            "version": "14.8"
+          },
+          {
+            "software_id": 5,
+            "software_name": "OpenSSH",
+            "version_id": 10,
+            "version": "9.8p1"
+          }
+        ],
+        "vulnerability_findings": [],
+        "application_role": "DR Standby Node"
+      }
+    ],
+    "total_findings_count": 0,
+    "open_critical_findings_count": 0
+  }
+]

@@ -1,0 +1,233 @@
+[
+  {
+    "server_id": 1,
+    "software_id": 5,
+    "software_name": "OpenSSH",
+    "version_id": 9,
+    "version": "8.9p1"
+  },
+  {
+    "server_id": 1,
+    "software_id": 1,
+    "software_name": "Apache Tomcat",
+    "version_id": 1,
+    "version": "9.0.58"
+  },
+  {
+    "server_id": 1,
+    "software_id": 2,
+    "software_name": "Spring Framework",
+    "version_id": 3,
+    "version": "5.3.18"
+  },
+  {
+    "server_id": 2,
+    "software_id": 5,
+    "software_name": "OpenSSH",
+    "version_id": 9,
+    "version": "8.9p1"
+  },
+  {
+    "server_id": 2,
+    "software_id": 1,
+    "software_name": "Apache Tomcat",
+    "version_id": 1,
+    "version": "9.0.58"
+  },
+  {
+    "server_id": 2,
+    "software_id": 2,
+    "software_name": "Spring Framework",
+    "version_id": 3,
+    "version": "5.3.18"
+  },
+  {
+    "server_id": 3,
+    "software_id": 5,
+    "software_name": "OpenSSH",
+    "version_id": 10,
+    "version": "9.8p1"
+  },
+  {
+    "server_id": 3,
+    "software_id": 7,
+    "software_name": "PostgreSQL",
+    "version_id": 13,
+    "version": "14.8"
+  },
+  {
+    "server_id": 4,
+    "software_id": 4,
+    "software_name": "Nginx",
+    "version_id": 7,
+    "version": "1.20.1"
+  },
+  {
+    "server_id": 4,
+    "software_id": 5,
+    "software_name": "OpenSSH",
+    "version_id": 9,
+    "version": "8.9p1"
+  },
+  {
+    "server_id": 5,
+    "software_id": 4,
+    "software_name": "Nginx",
+    "version_id": 7,
+    "version": "1.20.1"
+  },
+  {
+    "server_id": 5,
+    "software_id": 5,
+    "software_name": "OpenSSH",
+    "version_id": 9,
+    "version": "8.9p1"
+  },
+  {
+    "server_id": 6,
+    "software_id": 3,
+    "software_name": "Apache Log4j",
+    "version_id": 5,
+    "version": "2.14.1"
+  },
+  {
+    "server_id": 6,
+    "software_id": 13,
+    "software_name": "Node.js",
+    "version_id": 19,
+    "version": "16.14.0"
+  },
+  {
+    "server_id": 6,
+    "software_id": 5,
+    "software_name": "OpenSSH",
+    "version_id": 9,
+    "version": "8.9p1"
+  },
+  {
+    "server_id": 7,
+    "software_id": 8,
+    "software_name": "Redis",
+    "version_id": 14,
+    "version": "6.2.5"
+  },
+  {
+    "server_id": 7,
+    "software_id": 5,
+    "software_name": "OpenSSH",
+    "version_id": 10,
+    "version": "9.8p1"
+  },
+  {
+    "server_id": 8,
+    "software_id": 6,
+    "software_name": "OpenSSL",
+    "version_id": 11,
+    "version": "1.1.1k"
+  },
+  {
+    "server_id": 8,
+    "software_id": 9,
+    "software_name": "RabbitMQ",
+    "version_id": 15,
+    "version": "3.9.15"
+  },
+  {
+    "server_id": 8,
+    "software_id": 5,
+    "software_name": "OpenSSH",
+    "version_id": 9,
+    "version": "8.9p1"
+  },
+  {
+    "server_id": 9,
+    "software_id": 6,
+    "software_name": "OpenSSL",
+    "version_id": 12,
+    "version": "3.0.12"
+  },
+  {
+    "server_id": 10,
+    "software_id": 10,
+    "software_name": "Apache Spark",
+    "version_id": 16,
+    "version": "3.2.0"
+  },
+  {
+    "server_id": 10,
+    "software_id": 5,
+    "software_name": "OpenSSH",
+    "version_id": 9,
+    "version": "8.9p1"
+  },
+  {
+    "server_id": 11,
+    "software_id": 10,
+    "software_name": "Apache Spark",
+    "version_id": 16,
+    "version": "3.2.0"
+  },
+  {
+    "server_id": 11,
+    "software_id": 5,
+    "software_name": "OpenSSH",
+    "version_id": 9,
+    "version": "8.9p1"
+  },
+  {
+    "server_id": 12,
+    "software_id": 11,
+    "software_name": "Apache HTTP Server",
+    "version_id": 17,
+    "version": "2.4.49"
+  },
+  {
+    "server_id": 12,
+    "software_id": 5,
+    "software_name": "OpenSSH",
+    "version_id": 9,
+    "version": "8.9p1"
+  },
+  {
+    "server_id": 13,
+    "software_id": 12,
+    "software_name": "Jenkins",
+    "version_id": 18,
+    "version": "2.441"
+  },
+  {
+    "server_id": 13,
+    "software_id": 5,
+    "software_name": "OpenSSH",
+    "version_id": 9,
+    "version": "8.9p1"
+  },
+  {
+    "server_id": 14,
+    "software_id": 13,
+    "software_name": "Node.js",
+    "version_id": 19,
+    "version": "16.14.0"
+  },
+  {
+    "server_id": 14,
+    "software_id": 5,
+    "software_name": "OpenSSH",
+    "version_id": 9,
+    "version": "8.9p1"
+  },
+  {
+    "server_id": 15,
+    "software_id": 7,
+    "software_name": "PostgreSQL",
+    "version_id": 13,
+    "version": "14.8"
+  },
+  {
+    "server_id": 15,
+    "software_id": 5,
+    "software_name": "OpenSSH",
+    "version_id": 10,
+    "version": "9.8p1"
+  }
+]
