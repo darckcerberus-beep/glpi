@@ -52,10 +52,24 @@ From this directory (`/home/romain/glpi`):
   docker compose exec db mariadb-dump -u glpi -pglpi_secret_password_2026 glpi > backup_$(date +%Y%m%d).sql
   ```
 
+- **Deploy / Update Vulnerability Management Plugin:**
+  ```bash
+  tar -czf - -C plugins vulnerabilitymanagement | docker exec -i -u www-data glpi-app tar -xzf - -C /var/glpi/marketplace/
+  docker compose exec -u www-data glpi /var/www/glpi/bin/console plugin:install vulnerabilitymanagement --no-interaction
+  docker compose exec -u www-data glpi /var/www/glpi/bin/console cache:clear
+  ```
+
+- **Seed Mock CMDB & Vulnerability Dataset:**
+  ```bash
+  docker compose exec -T db mariadb -u glpi -pglpi_secret_password_2026 glpi < mock_data/sql/seed_glpi_mock_data.sql
+  ```
+
 ---
 
 ## 📁 File Structure
 
 - [`docker-compose.yml`](file:///home/romain/glpi/docker-compose.yml): Service specifications for GLPI and MariaDB.
 - [`.env`](file:///home/romain/glpi/.env): Environment variables and credentials (ignored by git).
+- [`plugins/vulnerabilitymanagement/`](file:///home/romain/glpi/plugins/vulnerabilitymanagement/README.md): Business-aware Vulnerability Management plugin (`Application`, `ApplicationAsset`, `Vulnerability`, `VulnerabilityInstance`, `DashboardProvider`, and Web UI `CsvImport` at **Management > Import CSV Data**).
+- [`mock_data/`](file:///home/romain/glpi/mock_data/README.md): Enterprise CMDB & Vulnerability Management mock dataset (`csv/`, `json/`, `sql/seed_glpi_mock_data.sql`, and `scripts/`).
 
