@@ -1,0 +1,12 @@
+CveId,DeviceName,VulnerabilitySeverityLevel,CvssScore,SoftwareVendor,SoftwareName,SoftwareVersion,RecommendedSecurityUpdate,OSPlatform,OSVersion,ExploitabilityLevel,FirstSeenTimestamp,LastSeenTimestamp
+CVE-2024-6387,srv-bank-api-01.prod.internal,Critical,8.1,OpenBSD,OpenSSH,8.9p1,Upgrade OpenSSH to 9.8p1,Ubuntu Linux,22.04 LTS,ExploitIsPublic,2026-10-04,2026-11-01
+CVE-2024-6387,srv-bank-api-02.prod.internal,Critical,8.1,OpenBSD,OpenSSH,8.9p1,Upgrade OpenSSH to 9.8p1,Ubuntu Linux,22.04 LTS,ExploitIsPublic,2026-10-04,2026-11-01
+CVE-2022-22965,srv-bank-api-01.prod.internal,Critical,9.8,VMware,Spring Framework,5.3.18,Upgrade Spring Framework to 5.3.18+,Ubuntu Linux,22.04 LTS,ExploitIsVerified,2026-10-04,2026-11-01
+CVE-2022-22965,srv-bank-api-02.prod.internal,Critical,9.8,VMware,Spring Framework,5.3.18,Upgrade Spring Framework to 5.3.18+,Ubuntu Linux,22.04 LTS,ExploitIsVerified,2026-10-04,2026-11-01
+CVE-2023-44487,srv-ecom-web-01.prod.internal,High,7.5,F5,Nginx,1.20.1,Upgrade Nginx to 1.24.1+,Debian Linux,11,ExploitIsVerified,2026-10-04,2026-11-01
+CVE-2023-44487,srv-ecom-web-02.prod.internal,High,7.5,F5,Nginx,1.20.1,Upgrade Nginx to 1.24.1+,Debian Linux,11,ExploitIsVerified,2026-10-04,2026-11-01
+CVE-2021-44228,srv-ecom-app-01.prod.internal,Critical,10.0,Apache,Apache Log4j,2.14.1,Upgrade Log4j to 2.17.1+,RHEL,9.2,ExploitIsVerified,2026-10-04,2026-11-01
+CVE-2022-3602,srv-pay-proc-01.pci.internal,High,7.5,OpenSSL,OpenSSL,1.1.1k,Upgrade OpenSSL to 3.0.7+,RHEL,8.8,NoExploit,2026-10-04,2026-11-01
+CVE-2022-33891,srv-data-spark-01.prod.internal,High,8.8,Apache,Apache Spark,3.2.0,Upgrade Apache Spark to 3.2.2+,Ubuntu Linux,22.04 LTS,ExploitIsPublic,2026-10-11,2026-11-01
+CVE-2021-41773,srv-hr-app-01.corp.internal,High,7.5,Apache,Apache HTTP Server,2.4.49,Upgrade Apache HTTP Server to 2.4.51+,Debian Linux,11,ExploitIsVerified,2026-10-04,2026-11-01
+CVE-2024-23897,srv-ops-ci-01.corp.internal,Critical,9.8,Jenkins,Jenkins,2.441,Upgrade Jenkins to 2.442+,Ubuntu Linux,22.04 LTS,ExploitIsVerified,2026-11-01,2026-11-01

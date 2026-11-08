@@ -16,7 +16,10 @@ mock_data/
 │   ├── server_software.csv              # Relational link: Server <-> Installed Software
 │   ├── vulnerabilities.csv              # KnowledgeBase CVE definitions & CVSS scores
 │   ├── vulnerability_findings.csv       # Per-asset detection instances & proofs
-│   └── vulnerability_scan_flat_export.csv # Qualys/Nessus-style flat scanner export
+│   ├── vulnerability_scan_flat_export.csv # Qualys/Nessus-style flat scanner export
+│   └── defender/                        # Weekly Microsoft Defender VM extracts
+│       ├── defender_extract_2026-11-01.csv
+│       └── defender_extract_2026-11-08.csv
 ├── json/
 │   ├── applications.json                # API-ready applications list
 │   ├── servers.json                     # API-ready servers list
@@ -218,8 +221,21 @@ When you are ready to provide your actual data via **CSV** or **API**, refer to 
 | **Exposition Status**| `exposure` | `VulnerabilityInstance.exposure` | `external` (Internet-Facing), `partner`, `internal` |
 | **Exploitability** | `exploitability_label` | Calculated | Composite Risk (`Critical`, `High`, `Medium`, `Low`) based on Exploit + Exposure |
 | **Status** | `status` | `VulnerabilityInstance.status`| `1`=New, `2`=Active, `3`=Re-opened, `4`=Fixed, `5`=Ignored |
+| **Date Fixed** | `date_fixed` | `VulnerabilityInstance.date_fixed`| Timestamp when status transitioned to `4` (Fixed) |
 | **Port & Protocol**| `port`, `protocol` | `port`, `protocol` | Network port (e.g. `443`, `22`) & `tcp`/`udp`/`local` |
 | **Proof / Banner** | `results` / `proof` | `VulnerabilityInstance.proof` | Scanner detection evidence |
+
+### 5. Microsoft Defender Extract (`csv/defender/*.csv`) Mapping
+| Defender CSV Header | Target Object & Field | Description |
+| :--- | :--- | :--- |
+| `CveId` | `Vulnerability.cve` & `vuln_code` | Standard CVE ID (e.g. `CVE-2024-6387`) |
+| `DeviceName` | `Computer.name` | FQDN or short hostname of the server |
+| `VulnerabilitySeverityLevel` | `Vulnerability.severity` | `Critical` (`5`), `High` (`4`), `Medium` (`3`), `Low` (`2`) |
+| `CvssScore` | `Vulnerability.cvss_score` | Float `0.0` – `10.0` |
+| `SoftwareVendor`, `SoftwareName`, `SoftwareVersion` | `Software` & `SoftwareVersion` | Upserted and linked to host via `glpi_items_softwareversions` |
+| `RecommendedSecurityUpdate`, `RecommendedSecurityUpdateId` | `Vulnerability.solution`, `patch_available` | Remediation guidance and advisory ID |
+| `ExploitabilityLevel`, `PublicExploit`, `IsExploitVerified` | `Vulnerability.exploit_status`, `cisa_kev` | `ExploitVerified` -> `3` (CISA KEV), `ExploitExists` -> `2`, `PoC` -> `1` |
+| `FirstSeenTimestamp`, `LastSeenTimestamp` | `VulnerabilityInstance.first_found`, `last_found` | Used with `snapshot_date` to drive `New -> Active -> Fixed -> Re-opened` transitions |
 
 ---
 

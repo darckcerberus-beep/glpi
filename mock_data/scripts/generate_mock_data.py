@@ -1284,16 +1284,18 @@ def generate_sql_seed():
     sql_lines.append("")
     sql_lines.append("-- 7. Generic Vulnerabilities (glpi_plugin_vulnerabilitymanagement_vulnerabilities)")
     sql_lines.append("DELETE FROM `glpi_plugin_vulnerabilitymanagement_vulnerabilities` WHERE `id` BETWEEN 1 AND 50;")
+    vuln_soft_map = {1: 105, 2: 103, 3: 102, 4: 104, 5: 106, 6: 112, 7: 110, 8: 111, 9: 113}
     for v in VULNERABILITIES:
         d = v["description"].replace("'", "''")
         t = v["threat"].replace("'", "''")
         imp = v["impact"].replace("'", "''")
         sol = v["solution"].replace("'", "''")
         fw = v["exploit_frameworks"].replace("'", "''")
+        sid = vuln_soft_map.get(v["id"], 0)
         sql_lines.append(
             f"INSERT INTO `glpi_plugin_vulnerabilitymanagement_vulnerabilities` "
-            f"(`id`, `entities_id`, `is_recursive`, `name`, `vuln_code`, `cve`, `severity`, `cvss_score`, `exploit_status`, `cisa_kev`, `exploit_frameworks`, `category`, `is_patchable`, `published_date`, `description`, `threat`, `impact`, `solution`, `is_deleted`, `date_creation`, `date_mod`) "
-            f"VALUES ({v['id']}, 0, 1, '{v['name']}', '{v['vuln_code']}', '{v['cve']}', {v['severity']}, {v['cvss_score']}, {v['exploit_status']}, {v['cisa_kev']}, '{fw}', '{v['category']}', {v['is_patchable']}, '{v['published_date']}', '{d}', '{t}', '{imp}', '{sol}', 0, NOW(), NOW());"
+            f"(`id`, `entities_id`, `is_recursive`, `name`, `vuln_code`, `cve`, `softwares_id`, `severity`, `cvss_score`, `exploit_status`, `cisa_kev`, `exploit_frameworks`, `category`, `is_patchable`, `published_date`, `description`, `threat`, `impact`, `solution`, `is_deleted`, `date_creation`, `date_mod`) "
+            f"VALUES ({v['id']}, 0, 1, '{v['name']}', '{v['vuln_code']}', '{v['cve']}', {sid}, {v['severity']}, {v['cvss_score']}, {v['exploit_status']}, {v['cisa_kev']}, '{fw}', '{v['category']}', {v['is_patchable']}, '{v['published_date']}', '{d}', '{t}', '{imp}', '{sol}', 0, NOW(), NOW());"
         )
 
     sql_lines.append("")
@@ -1301,11 +1303,12 @@ def generate_sql_seed():
     sql_lines.append("DELETE FROM `glpi_plugin_vulnerabilitymanagement_vulnerabilityinstances` WHERE `id` BETWEEN 1 AND 50;")
     for f in FINDINGS:
         cid = 100 + f["server_id"]
+        sid = vuln_soft_map.get(f["vuln_id"], 0)
         proof_escaped = f["proof"].replace("'", "''")
         sql_lines.append(
             f"INSERT INTO `glpi_plugin_vulnerabilitymanagement_vulnerabilityinstances` "
-            f"(`id`, `entities_id`, `is_recursive`, `plugin_vulnerabilitymanagement_vulnerabilities_id`, `itemtype`, `items_id`, `status`, `port`, `protocol`, `exposure`, `ip`, `first_found`, `last_found`, `times_found`, `proof`, `tickets_id`, `is_deleted`, `date_creation`, `date_mod`) "
-            f"VALUES ({f['id']}, 0, 1, {f['vuln_id']}, 'Computer', {cid}, {f['status']}, {f['port']}, '{f['protocol']}', '{f['exposure']}', '{f['ip']}', '{f['first_found']}', '{f['last_found']}', {f['times_found']}, '{proof_escaped}', 0, 0, NOW(), NOW());"
+            f"(`id`, `entities_id`, `is_recursive`, `plugin_vulnerabilitymanagement_vulnerabilities_id`, `softwares_id`, `itemtype`, `items_id`, `status`, `port`, `protocol`, `exposure`, `ip`, `first_found`, `last_found`, `times_found`, `proof`, `tickets_id`, `is_deleted`, `date_creation`, `date_mod`) "
+            f"VALUES ({f['id']}, 0, 1, {f['vuln_id']}, {sid}, 'Computer', {cid}, {f['status']}, {f['port']}, '{f['protocol']}', '{f['exposure']}', '{f['ip']}', '{f['first_found']}', '{f['last_found']}', {f['times_found']}, '{proof_escaped}', 0, 0, NOW(), NOW());"
         )
 
     sql_lines.append("")
