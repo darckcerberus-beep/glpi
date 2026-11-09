@@ -18,6 +18,7 @@ services:
       - GLPI_DB_PASSWORD=${GLPI_DB_PASSWORD}
     volumes:
       - glpi_data:/var/glpi
+      - ./config/php/custom.ini:/usr/local/etc/php/conf.d/custom.ini:ro
     depends_on:
       db:
         condition: service_healthy
